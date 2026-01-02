@@ -1,6 +1,6 @@
-## UML-Diagramme – Analyse und Entwurf
+## 4. UML- und Datenbankdiagramme – Analyse und Entwurf
 
-Zur strukturierten Planung und Dokumentation der Anwendung wurden mehrere UML-Diagramme erstellt.
+Zur strukturierten Planung und Dokumentation der Anwendung wurden mehrere Diagramme erstellt.
 Diese Diagramme unterstützen das Verständnis der Anforderungen, der Systemarchitektur sowie der
 zentralen Abläufe innerhalb der Anwendung.
 
@@ -8,7 +8,7 @@ Alle Diagramme befinden sich im Repository im Ordner `docs/uml/`.
 
 ---
 
-### 1. Use-Case-Diagramm
+### 4.1 Use-Case-Diagramm
 
 Das Use-Case-Diagramm stellt die Anwendung aus Sicht des Benutzers dar.
 Es zeigt, welche Funktionen dem Benutzer zur Verfügung stehen und wie er mit dem System interagiert.
@@ -21,31 +21,35 @@ Der Benutzer kann:
 - Eine Monatsauswertung (Einnahmen, Ausgaben, Saldo) anzeigen
 
 Das Diagramm verdeutlicht, dass alle Kernfunktionen direkt vom Benutzer ausgelöst werden
-und bildet die Grundlage für die funktionalen Anforderungen.
+und bildet die Grundlage für die funktionalen Anforderungen der Anwendung.
 
 ![Use-Case Diagramm](uml/usecase.png)
 
 ---
 
-### 2. Klassendiagramm
+### 4.2 Klassendiagramm
 
 Das Klassendiagramm beschreibt die statische Struktur der Anwendung und zeigt die wichtigsten Klassen
 sowie deren Beziehungen untereinander.
 
 Zentrale Klassen sind:
 - **Transaction** (Model): Repräsentiert eine einzelne Einnahme oder Ausgabe.
-- **MainViewModel** (ViewModel): Enthält die Geschäftslogik, Commands und berechnete Werte
-  wie Balance und Monatsauswertung.
-- **BudgetDbContext**: Stellt die Verbindung zur SQLite-Datenbank her (Entity Framework Core).
+- **MainViewModel** (ViewModel): Enthält die Geschäftslogik, berechnete Werte (Balance, Monatsauswertung)
+  sowie die Commands zur Verarbeitung von Benutzeraktionen.
+- **BudgetDbContext**: Stellt die Verbindung zur SQLite-Datenbank her und verwaltet die Persistenz
+  über Entity Framework Core.
 
-Das Diagramm verdeutlicht die Umsetzung des MVVM-Architekturmusters und zeigt die klare Trennung
-zwischen Datenmodell, Logik und Datenhaltung.
+Zusätzlich verwendet das ViewModel Commands (z. B. `AddCommand`, `DeleteSelectedCommand`),
+um Benutzerinteraktionen aus der View gemäß dem MVVM-Pattern zu verarbeiten.
+
+Das Diagramm verdeutlicht die Umsetzung der MVVM-Architektur und die klare Trennung zwischen
+Datenmodell, Anwendungslogik und Datenhaltung.
 
 ![Klassendiagramm](uml/classdiagram.png)
 
 ---
 
-### 3. Aktivitätsdiagramm – „Transaktion hinzufügen“
+### 4.3 Aktivitätsdiagramm – „Transaktion hinzufügen“
 
 Das Aktivitätsdiagramm beschreibt den Ablauf beim Hinzufügen einer neuen Transaktion.
 
@@ -54,18 +58,18 @@ der Benutzeroberfläche. Wichtige Schritte sind:
 - Eingabe der Transaktionsdaten
 - Validierung der Eingaben
 - Speicherung der Daten in der Datenbank
-- Aktualisierung der Liste und der Berechnungen (Balance, Monatswerte)
+- Aktualisierung der Liste sowie der Berechnungen (Balance, Monatswerte)
 
-Dieses Diagramm zeigt den Kontrollfluss und hilft, die Implementierung der Logik im ViewModel
-nachvollziehbar darzustellen.
+Dieses Diagramm stellt den Kontrollfluss dar und erleichtert das Verständnis der im ViewModel
+implementierten Logik.
 
 ![Aktivitätsdiagramm – Transaktion hinzufügen](uml/activity_add.png)
 
 ---
 
-### 4. ER-Modell / Datenbankmodell
+### 4.4 Datenbankmodell (ER-Modell)
 
-Das ER-Modell stellt die Struktur der Datenbank dar.
+Das Datenbankmodell wird durch ein Entity-Relationship-Diagramm (ER-Modell) beschrieben.
 Die Anwendung verwendet eine SQLite-Datenbank mit einer zentralen Tabelle **Transactions**.
 
 Die Tabelle enthält folgende Attribute:
@@ -76,14 +80,59 @@ Die Tabelle enthält folgende Attribute:
 - **IsIncome**: Kennzeichnung für Einnahme oder Ausgabe
 
 Das Datenbankmodell ist bewusst einfach gehalten und ermöglicht eine effiziente Speicherung
-und Auswertung der Finanzdaten. Es ist zudem leicht erweiterbar, z. B. um Kategorien oder Benutzer.
+sowie Auswertung der Finanzdaten. Es ist zudem leicht erweiterbar, z. B. um Kategorien oder Benutzer.
 
 ![ER-Modell](uml/er_model.png)
 
 ---
 
-### Zusammenfassung
+### 4.5 Zusammenfassung
 
-Die UML-Diagramme unterstützen die strukturierte Entwicklung der Anwendung und stellen sicher,
+Die Diagramme unterstützen die strukturierte Entwicklung der Anwendung und stellen sicher,
 dass Anforderungen, Architektur und Implementierung konsistent aufeinander abgestimmt sind.
 Sie tragen wesentlich zur Verständlichkeit, Wartbarkeit und Erweiterbarkeit des Projekts bei.
+
+---
+
+## 7. Innovation und Erweiterbarkeit
+
+Die entwickelte Anwendung **BudgetManager** geht über eine einfache CRUD-Anwendung hinaus
+und bietet mehrere innovative sowie benutzerfreundliche Ansätze.
+
+### 7.1 Benutzerfreundlichkeit
+
+- Klare, moderne GUI mit übersichtlicher Struktur (Dashboard, Banner, Formulare, Tabelle)
+- Direkte visuelle Rückmeldung bei Eingaben und Aktionen
+- Intuitive Monats- und Jahresauswahl zur schnellen Auswertung der Finanzdaten
+- Unterstützung verschiedener Zahlenformate (z. B. 15,25 und 15.25)
+
+Die Anwendung ist auch für technisch unerfahrene Benutzer leicht verständlich und erfordert
+keine besondere Einarbeitung.
+
+### 7.2 Funktionale Erweiterbarkeit
+
+Die verwendete MVVM-Architektur ermöglicht eine einfache Erweiterung der Anwendung, z. B. um:
+- Kategorien für Einnahmen und Ausgaben
+- Grafische Auswertungen (Diagramme pro Monat/Jahr)
+- Exportfunktionen (CSV, PDF)
+- Mehrbenutzerfähigkeit
+- Mehrsprachige Benutzeroberfläche
+
+Diese Erweiterungen können ohne grundlegende Änderungen an der bestehenden Struktur ergänzt werden.
+
+### 7.3 Technische Innovation
+
+- Konsequente Nutzung des MVVM-Patterns zur Trennung von Logik und UI
+- Einsatz von Entity Framework Core mit SQLite für lokale Persistenz
+- Asynchrone Datenzugriffe zur Vermeidung von UI-Blockierungen
+- Dynamische Berechnung von Balance und Monatsauswertungen in Echtzeit
+
+### 7.4 Zukunftspotenzial
+
+Die Anwendung eignet sich als Grundlage für:
+- Persönliche Haushaltsbuchführung
+- Studenten- oder Kleinunternehmer-Finanzverwaltung
+- Erweiterung zu einer webbasierten Lösung
+
+Durch die klare Struktur und ausführliche Dokumentation ist das Projekt nachhaltig wartbar
+und gut ausbaufähig.
