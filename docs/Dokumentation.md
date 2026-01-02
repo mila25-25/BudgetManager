@@ -136,3 +136,17 @@ Die Anwendung eignet sich als Grundlage für:
 
 Durch die klare Struktur und ausführliche Dokumentation ist das Projekt nachhaltig wartbar
 und gut ausbaufähig.
+## Screenshots der Benutzeroberfläche
+
+### Hauptfenster / Dashboard
+![Dashboard](screenshots/01_dashboard.png)
+
+### Transaktion hinzufügen
+![Transaktion hinzufügen](screenshots/02_add_transaction.png)
+
+### Transaktionsübersicht
+![Transaktionen](screenshots/03_transactions_table.png)
+
+### Monatsauswertung
+![Monatsauswertung](screenshots/04_month_overview.png)
+
