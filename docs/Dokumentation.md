@@ -142,7 +142,7 @@ und gut ausbaufähig.
 ![Dashboard](screenshots/01_dashboard.png)
 
 ### Transaktion hinzufügen
-![Transaktion hinzufügen](screenshots/02_add_transaction.png)
+![Transaktion hinzufügen](screenshots/02_Transaktion.png)
 
 ### Transaktionsübersicht
 ![Transaktionen](screenshots/03_transactions_table.png)
