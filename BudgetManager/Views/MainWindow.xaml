@@ -5,194 +5,194 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:BudgetManager.ViewModels"
         mc:Ignorable="d"
-        Title="Budget Manager" Height="540" Width="920"
+        Title="Budget Manager" Height="712" Width="920"
         Background="#EEF4FF">
 
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
+	<Window.DataContext>
+		<vm:MainViewModel/>
+	</Window.DataContext>
 
-    <!-- ===== STYLES ===== -->
-    <Window.Resources>
+	<!-- ===== STYLES ===== -->
+	<Window.Resources>
 
-        <!-- Rounded button base -->
-        <Style x:Key="RoundedButtonBase" TargetType="Button">
-            <Setter Property="Padding" Value="14,8"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bd"
+		<!-- Rounded button base -->
+		<Style x:Key="RoundedButtonBase" TargetType="Button">
+			<Setter Property="Padding" Value="14,8"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="Bd"
                                 Background="{TemplateBinding Background}"
                                 CornerRadius="10"
                                 SnapsToDevicePixels="True">
-                            <ContentPresenter HorizontalAlignment="Center"
+							<ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
                                               RecognizesAccessKey="True"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Opacity" Value="0.92"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Bd" Property="Opacity" Value="0.55"/>
-                                <Setter Property="Cursor" Value="Arrow"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="Bd" Property="Opacity" Value="0.92"/>
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter TargetName="Bd" Property="Opacity" Value="0.55"/>
+								<Setter Property="Cursor" Value="Arrow"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonBase}">
-            <Setter Property="Background" Value="#2563EB"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="110"/>
-            <Setter Property="Height" Value="36"/>
-        </Style>
+		<Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonBase}">
+			<Setter Property="Background" Value="#2563EB"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Width" Value="110"/>
+			<Setter Property="Height" Value="36"/>
+		</Style>
 
-        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonBase}">
-            <Setter Property="Background" Value="MediumAquamarine"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Height" Value="34"/>
-            <Setter Property="Padding" Value="16,6"/>
-            <Setter Property="MinWidth" Value="170"/>
-        </Style>
+		<Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonBase}">
+			<Setter Property="Background" Value="MediumAquamarine"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Height" Value="34"/>
+			<Setter Property="Padding" Value="16,6"/>
+			<Setter Property="MinWidth" Value="170"/>
+		</Style>
 
-        <!-- Watermark TextBox: watermark text comes from Tag -->
-        <Style x:Key="WatermarkTextBox" TargetType="TextBox">
-            <Setter Property="Height" Value="36"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="10,0"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#D6E2FF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <Border x:Name="Bd"
+		<!-- Watermark TextBox: watermark text comes from Tag -->
+		<Style x:Key="WatermarkTextBox" TargetType="TextBox">
+			<Setter Property="Height" Value="36"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="10,0"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#D6E2FF"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Grid>
+							<Border x:Name="Bd"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="10"/>
-                            <ScrollViewer x:Name="PART_ContentHost"
+							<ScrollViewer x:Name="PART_ContentHost"
                                           Margin="0"
                                           VerticalAlignment="Center"/>
 
-                            <!-- Watermark -->
-                            <TextBlock x:Name="Watermark"
+							<!-- Watermark -->
+							<TextBlock x:Name="Watermark"
                                        Text="{TemplateBinding Tag}"
                                        Foreground="#94A3B8"
                                        Margin="12,0,0,0"
                                        VerticalAlignment="Center"
                                        IsHitTestVisible="False"
                                        Visibility="Collapsed"/>
-                        </Grid>
+						</Grid>
 
-                        <ControlTemplate.Triggers>
-                            <!-- show watermark when empty -->
-                            <Trigger Property="Text" Value="">
-                                <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
-                            </Trigger>
+						<ControlTemplate.Triggers>
+							<!-- show watermark when empty -->
+							<Trigger Property="Text" Value="">
+								<Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
+							</Trigger>
 
-                            <!-- focus border -->
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter TargetName="Watermark" Property="Visibility" Value="Collapsed"/>
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#93C5FD"/>
-                            </Trigger>
+							<!-- focus border -->
+							<Trigger Property="IsKeyboardFocused" Value="True">
+								<Setter TargetName="Watermark" Property="Visibility" Value="Collapsed"/>
+								<Setter TargetName="Bd" Property="BorderBrush" Value="#93C5FD"/>
+							</Trigger>
 
-                            <!-- disabled -->
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Bd" Property="Opacity" Value="0.7"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+							<!-- disabled -->
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter TargetName="Bd" Property="Opacity" Value="0.7"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-        <!-- Small card style -->
-        <Style x:Key="StatCard" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="14"/>
-            <Setter Property="BorderBrush" Value="#D6E2FF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="14"/>
-        </Style>
+		<!-- Small card style -->
+		<Style x:Key="StatCard" TargetType="Border">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="CornerRadius" Value="14"/>
+			<Setter Property="BorderBrush" Value="#D6E2FF"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Padding" Value="14"/>
+		</Style>
 
-        <!-- DataGrid nicer -->
-        <Style x:Key="NiceDataGrid" TargetType="DataGrid">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#D6E2FF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RowBackground" Value="White"/>
-            <Setter Property="AlternatingRowBackground" Value="#F6F8FF"/>
-            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
-            <Setter Property="HeadersVisibility" Value="Column"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="SelectionUnit" Value="FullRow"/>
-            <Setter Property="RowHeight" Value="30"/>
-            <Setter Property="ColumnHeaderHeight" Value="34"/>
-        </Style>
+		<!-- DataGrid nicer -->
+		<Style x:Key="NiceDataGrid" TargetType="DataGrid">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#D6E2FF"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="RowBackground" Value="White"/>
+			<Setter Property="AlternatingRowBackground" Value="#F6F8FF"/>
+			<Setter Property="GridLinesVisibility" Value="Horizontal"/>
+			<Setter Property="HeadersVisibility" Value="Column"/>
+			<Setter Property="CanUserAddRows" Value="False"/>
+			<Setter Property="IsReadOnly" Value="True"/>
+			<Setter Property="SelectionMode" Value="Single"/>
+			<Setter Property="SelectionUnit" Value="FullRow"/>
+			<Setter Property="RowHeight" Value="30"/>
+			<Setter Property="ColumnHeaderHeight" Value="34"/>
+		</Style>
 
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#EEF4FF"/>
-            <Setter Property="Foreground" Value="#1E3A8A"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="BorderBrush" Value="#D6E2FF"/>
-            <Setter Property="BorderThickness" Value="0,0,0,1"/>
-            <Setter Property="Padding" Value="10,0"/>
-        </Style>
+		<Style TargetType="DataGridColumnHeader">
+			<Setter Property="Background" Value="#EEF4FF"/>
+			<Setter Property="Foreground" Value="#1E3A8A"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="BorderBrush" Value="#D6E2FF"/>
+			<Setter Property="BorderThickness" Value="0,0,0,1"/>
+			<Setter Property="Padding" Value="10,0"/>
+		</Style>
 
-        <Style TargetType="DataGridCell">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="10,0"/>
-        </Style>
+		<Style TargetType="DataGridCell">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Padding" Value="10,0"/>
+		</Style>
 
-        <!-- FIXED Row style (kein falsches Binding) -->
-        <Style TargetType="DataGridRow">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#EAF2FF"/>
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#DBEAFE"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+		<!-- FIXED Row style (kein falsches Binding) -->
+		<Style TargetType="DataGridRow">
+			<Setter Property="BorderThickness" Value="0"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="#EAF2FF"/>
+				</Trigger>
+				<Trigger Property="IsSelected" Value="True">
+					<Setter Property="Background" Value="#DBEAFE"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 
-    </Window.Resources>
+	</Window.Resources>
 
-    <!-- ===== LAYOUT ===== -->
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- 0 Header -->
-            <RowDefinition Height="Auto"/>
-            <!-- 1 Stats -->
-            <RowDefinition Height="Auto"/>
-            <!-- 2 Banner -->
-            <RowDefinition Height="Auto"/>
-            <!-- 3 Form -->
-            <RowDefinition Height="*"/>
-            <!-- 4 Table -->
-            <RowDefinition Height="Auto"/>
-            <!-- 5 Footer -->
-        </Grid.RowDefinitions>
+	<!-- ===== LAYOUT ===== -->
+	<Grid Margin="16">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<!-- 0 Header -->
+			<RowDefinition Height="Auto"/>
+			<!-- 1 Stats -->
+			<RowDefinition Height="Auto"/>
+			<!-- 2 Banner -->
+			<RowDefinition Height="Auto"/>
+			<!-- 3 Form -->
+			<RowDefinition Height="*"/>
+			<!-- 4 Table -->
+			<RowDefinition Height="Auto"/>
+			<!-- 5 Footer -->
+		</Grid.RowDefinitions>
 
-        <!-- Header -->
-        <TextBlock Grid.Row="0"
+		<!-- Header -->
+		<TextBlock Grid.Row="0"
                    Text="Budget Manager"
                    FontSize="28"
                    FontWeight="Bold"
@@ -200,56 +200,56 @@
                    Margin="2,0,0,12"/>
 
 
-        <!-- Row 1: Stats + Monats-Auswertung -->
-        <Grid Grid.Row="1" Margin="0,0,0,14">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+		<!-- Row 1: Stats + Monats-Auswertung -->
+		<Grid Grid.Row="1" Margin="0,0,0,14">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
 
-            <!-- Stats (старые 3 карточки) -->
-            <Grid Grid.Row="0" Margin="0,0,0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+			<!-- Stats (старые 3 карточки) -->
+			<Grid Grid.Row="0" Margin="0,0,0,10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Style="{StaticResource StatCard}" Margin="0,0,10,0">
-                    <StackPanel>
-                        <TextBlock Text="Balance" Foreground="#64748B" FontWeight="SemiBold"/>
-                        <TextBlock FontSize="20" FontWeight="Bold" Foreground="#0F172A">
+				<Border Grid.Column="0" Style="{StaticResource StatCard}" Margin="0,0,10,0">
+					<StackPanel>
+						<TextBlock Text="Balance" Foreground="#64748B" FontWeight="SemiBold"/>
+						<TextBlock FontSize="20" FontWeight="Bold" Foreground="#0F172A">
                     <Run Text="{Binding Balance, Mode=OneWay, StringFormat={}{0:N2} €}"/>
-                        </TextBlock>
-                    </StackPanel>
-                </Border>
+						</TextBlock>
+					</StackPanel>
+				</Border>
 
-                <Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="0,0,10,0">
-                    <StackPanel>
-                        <TextBlock Text="Hinweis" Foreground="#64748B" FontWeight="SemiBold"/>
-                        <TextBlock Text="Einnahme = ✓, Ausgabe = leer" Foreground="#0F172A"/>
-                    </StackPanel>
-                </Border>
+				<Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="0,0,10,0">
+					<StackPanel>
+						<TextBlock Text="Hinweis" Foreground="#64748B" FontWeight="SemiBold"/>
+						<TextBlock Text="Einnahme = ✓, Ausgabe = leer" Foreground="#0F172A"/>
+					</StackPanel>
+				</Border>
 
-                <Border Grid.Column="2" Style="{StaticResource StatCard}">
-                    <StackPanel>
-                        <TextBlock Text="Tipp" Foreground="#64748B" FontWeight="SemiBold"/>
-                        <TextBlock Text="Summe: 15,25 oder 15.25" Foreground="#0F172A"/>
-                    </StackPanel>
-                </Border>
-            </Grid>
+				<Border Grid.Column="2" Style="{StaticResource StatCard}">
+					<StackPanel>
+						<TextBlock Text="Tipp" Foreground="#64748B" FontWeight="SemiBold"/>
+						<TextBlock Text="Summe: 15,25 oder 15.25" Foreground="#0F172A"/>
+					</StackPanel>
+				</Border>
+			</Grid>
 
-            <!-- Monats-Auswertung (Datum/Monat Picker + Werte) -->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+			<!-- Monats-Auswertung (Datum/Monat Picker + Werte) -->
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
 
-                <!-- Monat wählen -->
-                <DatePicker Grid.Column="0"
+				<!-- Monat wählen -->
+				<DatePicker Grid.Column="0"
             Width="140"
             Height="36"
             SelectedDate="{Binding SelectedMonth}"
@@ -258,123 +258,123 @@
             Margin="0,0,12,0"/>
 
 
-                <!-- Einnahmen -->
-                <Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="0,0,10,0">
-                    <StackPanel>
-                        <TextBlock Text="{Binding MonthTitle}" Foreground="#64748B" FontWeight="SemiBold"/>
-                        <TextBlock Text="Einnahmen" Foreground="#64748B"/>
-                        <TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
+				<!-- Einnahmen -->
+				<Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="0,0,10,0">
+					<StackPanel>
+						<TextBlock Text="{Binding MonthTitle}" Foreground="#64748B" FontWeight="SemiBold"/>
+						<TextBlock Text="Einnahmen" Foreground="#64748B"/>
+						<TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
                            Text="{Binding MonthIncome, StringFormat={}{0:N2} €}"/>
-                    </StackPanel>
-                </Border>
+					</StackPanel>
+				</Border>
 
-                <!-- Ausgaben -->
-                <Border Grid.Column="2" Style="{StaticResource StatCard}" Margin="0,0,10,0">
-                    <StackPanel>
-                        <TextBlock Text="Ausgaben" Foreground="#64748B"/>
-                        <TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
+				<!-- Ausgaben -->
+				<Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="245,0,10,0" Grid.ColumnSpan="2" Height="86" VerticalAlignment="Bottom">
+					<StackPanel>
+						<TextBlock Text="Ausgaben" Foreground="#64748B"/>
+						<TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
                            Text="{Binding MonthExpense, StringFormat={}{0:N2} €}"/>
-                    </StackPanel>
-                </Border>
+					</StackPanel>
+				</Border>
 
-                <!-- Saldo -->
-                <Border Grid.Column="3" Style="{StaticResource StatCard}">
-                    <StackPanel>
-                        <TextBlock Text="Saldo" Foreground="#64748B"/>
-                        <TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
+				<!-- Saldo -->
+				<Border Grid.Column="3" Style="{StaticResource StatCard}">
+					<StackPanel>
+						<TextBlock Text="Saldo" Foreground="#64748B"/>
+						<TextBlock FontSize="18" FontWeight="Bold" Foreground="#0F172A"
                            Text="{Binding MonthSaldo, StringFormat={}{0:N2} €}"/>
-                    </StackPanel>
-                </Border>
-            </Grid>
-        </Grid>
+					</StackPanel>
+				</Border>
+			</Grid>
+		</Grid>
 
 
-        <!-- Banner -->
-        <Border Grid.Row="2"
+		<!-- Banner -->
+		<Border Grid.Row="2"
         Height="140"
         Margin="0,0,0,14"
         CornerRadius="14"
         ClipToBounds="True"
         Background="#EEF4FF">
 
-            <Grid>
-                <!-- Bild bleibt links, keine Verzerrung -->
-                <Image Source="/Assets/banner.png"
+			<Grid>
+				<!-- Bild bleibt links, keine Verzerrung -->
+				<Image Source="/Assets/banner.png"
                Stretch="Uniform"
                HorizontalAlignment="Left"
                VerticalAlignment="Top" Height="300" Width="450" Margin="0,-100,0,0">
 
-                    <!-- Rechts ausblenden (Fade-out) -->
-                    <Image.OpacityMask>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="White" Offset="0.0"/>
-                            <GradientStop Color="White" Offset="0.65"/>
-                            <GradientStop Color="Transparent" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Image.OpacityMask>
-                </Image>
+					<!-- Rechts ausblenden (Fade-out) -->
+					<Image.OpacityMask>
+						<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+							<GradientStop Color="White" Offset="0.0"/>
+							<GradientStop Color="White" Offset="0.65"/>
+							<GradientStop Color="Transparent" Offset="1.0"/>
+						</LinearGradientBrush>
+					</Image.OpacityMask>
+				</Image>
 
-                <!-- Optional: ganz leichter dunkler Schleier nur links für Text-Lesbarkeit -->
-                <Rectangle HorizontalAlignment="Left" Width="437" RenderTransformOrigin="0.5,0.5" Margin="0,-10,0,0" Height="153" VerticalAlignment="Top">
-                    <Rectangle.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="0.113"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Rectangle.RenderTransform>
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <GradientStop Color="#22000000" Offset="0.0"/>
-                            <GradientStop Color="#00000000" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
+				<!-- Optional: ganz leichter dunkler Schleier nur links für Text-Lesbarkeit -->
+				<Rectangle HorizontalAlignment="Left" Width="437" RenderTransformOrigin="0.5,0.5" Margin="0,-10,0,0" Height="153" VerticalAlignment="Top">
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform Angle="0.113"/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+					<Rectangle.Fill>
+						<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+							<GradientStop Color="#22000000" Offset="0.0"/>
+							<GradientStop Color="#00000000" Offset="1.0"/>
+						</LinearGradientBrush>
+					</Rectangle.Fill>
+				</Rectangle>
 
-                <!-- Text -->
-                <StackPanel Margin="18" VerticalAlignment="Top">
-                    <TextBlock Text="Dein Budget im Blick"
+				<!-- Text -->
+				<StackPanel Margin="18" VerticalAlignment="Top">
+					<TextBlock Text="Dein Budget im Blick"
                        FontSize="20"
                        FontWeight="Bold"
                        Foreground="Navy"/>
-                    <TextBlock Text="Schnell erfassen • Monat auswerten • Überblick behalten"
+					<TextBlock Text="Schnell erfassen • Monat auswerten • Überblick behalten"
                        Margin="0,6,0,0"
                        Foreground="DarkBlue"/>
-                </StackPanel>
-            </Grid>
-        </Border>
+				</StackPanel>
+			</Grid>
+		</Border>
 
 
 
 
 
-        <!-- Input form -->
-        <Border Grid.Row="3"
+		<!-- Input form -->
+		<Border Grid.Row="3"
                 Padding="16"
                 Margin="0,0,0,14"
                 Background="White"
                 CornerRadius="14"
                 BorderBrush="#D6E2FF"
                 BorderThickness="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
 
-                <!-- Kauf / Title -->
-                <TextBox Grid.Column="0"
+				<!-- Kauf / Title -->
+				<TextBox Grid.Column="0"
                          Margin="0,0,10,0"
                          Style="{StaticResource WatermarkTextBox}"
                          Tag="Kauf / Beschreibung"
                          Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
-                <!-- Amount -->
-                <TextBox Grid.Column="1"
+				<!-- Amount -->
+				<TextBox Grid.Column="1"
                          Margin="0,0,10,0"
                          Style="{StaticResource WatermarkTextBox}"
                          Tag="Summe (€)"
@@ -384,67 +384,89 @@
                          DataObject.Pasting="Amount_Pasting"
                          LostFocus="Amount_LostFocus"/>
 
-                <!-- Date -->
-                <DatePicker Grid.Column="2"
+				<!-- Date -->
+				<DatePicker Grid.Column="2"
                             Margin="0,0,10,0"
                             Height="36"
                             SelectedDate="{Binding Date}"/>
 
-                <!-- Income -->
-                <CheckBox Grid.Column="3"
+				<!-- Income -->
+				<CheckBox Grid.Column="3"
                           VerticalAlignment="Center"
                           Content="Einnahme"
                           IsChecked="{Binding IsIncome}"
                           Margin="0,0,12,0"/>
 
-                <!-- Add -->
-                <Button Grid.Column="4"
+				<!-- Add -->
+				<Button Grid.Column="4"
                         Content="Hinzufügen"
                         Style="{StaticResource PrimaryButton}"
                         Command="{Binding AddCommand}"/>
-            </Grid>
-        </Border>
+			</Grid>
+		</Border>
 
-        <!-- Table -->
-        <DataGrid Grid.Row="4"
+		<!-- Table -->
+		<DataGrid Grid.Row="4"
                   Style="{StaticResource NiceDataGrid}"
                   ItemsSource="{Binding Transactions}"
                   SelectedItem="{Binding SelectedTransaction}"
                   AutoGenerateColumns="False">
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum"
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Datum"
                                     Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}"
                                     Width="130"/>
 
-                <DataGridTextColumn Header="Kauf"
+				<DataGridTextColumn Header="Kauf"
                                     Binding="{Binding Title}"
                                     Width="*"/>
 
-                <DataGridTextColumn Header="Summe"
-                                    Binding="{Binding Amount, StringFormat={}{0:N2} €}"
-                                    Width="140"/>
+				<DataGridTextColumn Header="Summe"
+                    Binding="{Binding Amount, StringFormat={}{0:N2} €}"
+                    Width="140">
 
-                <DataGridCheckBoxColumn Header="Einnahme"
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<!-- стандартный стиль -->
+							<Setter Property="FontWeight" Value="SemiBold"/>
+							<Setter Property="Foreground" Value="#0F172A"/>
+
+							<Style.Triggers>
+								<!-- Einnahme = grün -->
+								<DataTrigger Binding="{Binding IsIncome}" Value="True">
+									<Setter Property="Foreground" Value="#16A34A"/>
+								</DataTrigger>
+
+								<!-- Ausgabe = rot -->
+								<DataTrigger Binding="{Binding IsIncome}" Value="False">
+									<Setter Property="Foreground" Value="#DC2626"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+
+				</DataGridTextColumn>
+
+				<DataGridCheckBoxColumn Header="Einnahme"
                                         Binding="{Binding IsIncome}"
                                         Width="90"/>
-            </DataGrid.Columns>
-        </DataGrid>
+			</DataGrid.Columns>
+		</DataGrid>
 
-        <!-- Footer -->
-        <DockPanel Grid.Row="5" Margin="0,12,0,0">
-            <TextBlock DockPanel.Dock="Left"
+		<!-- Footer -->
+		<DockPanel Grid.Row="5" Margin="0,12,0,0">
+			<TextBlock DockPanel.Dock="Left"
                        FontSize="16"
                        FontWeight="SemiBold"
                        Foreground="#0F172A">
                 <Run Text="Balance:   " />
                 <Run Text="{Binding Balance, Mode=OneWay, StringFormat={}{0:N2} € }" />
-            </TextBlock>
+			</TextBlock>
 
-            <Button DockPanel.Dock="Right"
+			<Button DockPanel.Dock="Right"
                     Content="Auswahl löschen"
                     Style="{StaticResource DangerButton}"
                     Command="{Binding DeleteSelectedCommand}" Click="Button_Click" />
-        </DockPanel>
-    </Grid>
+		</DockPanel>
+	</Grid>
 </Window>
