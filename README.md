@@ -68,3 +68,21 @@ The database will be created automatically.
 ### Add Transaction
 
 ![Add Transaction](docs/add_transaction.png)
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](docs/01_dashboard.png)
+
+### Transactions
+
+![Transactions](docs/02_Transaktion.png)
+
+### Add Transaction
+
+![Add Transaction](docs/02_add_transaction.png)
+
+### Monthly Overview
+
+![Monthly Overview](docs/04_month_overview.png)
