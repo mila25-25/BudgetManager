@@ -19,14 +19,6 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 
 ---
 
-## Architecture
-
-The application follows the MVVM (Model-View-ViewModel) architecture.
-
-- **Model** – data structures and database entities  
-- **View** – WPF user interface  
-- **ViewModel** – application logic and data binding
-
 ## Tech Stack
 
 - C#
@@ -93,3 +85,31 @@ The database will be created automatically.
 ### Monthly Overview
 
 ![Monthly Overview](docs/screenshots/month_overview.png)
+
+## Architecture
+
+The application follows the **MVVM (Model-View-ViewModel)** architecture.
+
+- **Model** – data entities and database structure  
+- **View** – WPF user interface  
+- **ViewModel** – application logic and data binding  
+
+---
+
+## UML Diagrams
+
+### Use Case Diagram
+
+![Use Case](docs/uml/usecase.png)
+
+### Class Diagram
+
+![Class Diagram](docs/uml/classdiagram.png)
+
+### Database ER Model
+
+![ER Model](docs/uml/er_model.png)
+
+### Activity Diagram – Add Transaction
+
+![Activity Diagram](docs/uml/activity_add.png)
