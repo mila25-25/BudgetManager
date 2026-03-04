@@ -1,92 +1,70 @@
 # Budget Manager (WPF, MVVM)
 
-## Projektbeschreibung
-Der **Budget Manager** ist eine Desktop-Anwendung zur Verwaltung von Einnahmen und Ausgaben.
-Benutzer können finanzielle Transaktionen erfassen, anzeigen, löschen und ihre Finanzen
-monatlich auswerten. Die Daten werden dauerhaft in einer SQLite-Datenbank gespeichert.
+## Overview
+Budget Manager is a desktop application for managing personal finances.
+It allows users to track income and expenses, calculate balances and analyze transactions.
 
-Das Projekt wurde im Rahmen eines C#-Projekts mit Fokus auf **MVVM-Architektur**,
-**Datenbankanbindung** und **GUI-Entwicklung** umgesetzt.
+The application is built with WPF using the MVVM architecture and uses Entity Framework Core with SQLite for data storage.
 
 ---
 
-## Ziel des Projekts
-Ziel ist die Entwicklung einer benutzerfreundlichen Anwendung zur privaten Budgetverwaltung,
-die eine strukturierte Erfassung und Auswertung finanzieller Daten ermöglicht.
+## Features
+
+- Add income and expense transactions
+- View list of transactions
+- Automatic balance calculation
+- Categorize transactions
+- Simple and intuitive WPF user interface
+- Data persistence using SQLite and Entity Framework Core
 
 ---
 
-## Verwendete Technologien
-- **Programmiersprache:** C#
-- **Framework:** .NET (WPF)
-- **Architektur:** MVVM (Model-View-ViewModel)
-- **Datenbank:** SQLite
-- **ORM:** Entity Framework Core
-- **Versionsverwaltung:** Git & GitHub
+## Tech Stack
+
+- C#
+- .NET
+- WPF
+- MVVM
+- Entity Framework Core
+- SQLite
 
 ---
 
-## Funktionen
-- Hinzufügen von Einnahmen und Ausgaben
-- Anzeige aller Transaktionen in einer Tabelle
-- Löschen ausgewählter Transaktionen
-- Automatische Berechnung des Gesamt-Balance
-- Monatsauswertung (Einnahmen, Ausgaben, Saldo)
-- Persistente Speicherung der Daten (SQLite)
-- Benutzerfreundliche grafische Oberfläche (GUI)
+## Database
+
+The application uses a SQLite database.
+
+The database is created automatically when the application starts using Entity Framework Core migrations.
+
+The database file is stored locally and is not included in the repository.
 
 ---
 
-## Projektstruktur
+## How to Run
+
+1. Clone the repository
+
+git clone https://github.com/mila25-25/BudgetManager
+
+
+2. Open the solution in Visual Studio
+
 BudgetManager.sln
-README.md
-docs/
-tests/
-BudgetManager/
 
-- **BudgetManager/** – Quellcode (Views, ViewModels, Models, Datenbank)
-- **docs/** – Projektdokumentation, UML-Diagramme, Screenshots
-- **tests/** – Testfälle und Qualitätssicherung
-- **README.md** – Projektübersicht
+3. Restore NuGet packages
+
+4. Run the application
+
+The database will be created automatically.
 
 ---
 
-## Architektur (MVVM)
-- **Model:** Datenklassen (z. B. Transaction)
-- **View:** WPF-Oberfläche (XAML)
-- **ViewModel:** Geschäftslogik, Commands, Datenbindung
-- **Persistence:** Entity Framework Core mit SQLite
+## Screenshots
 
----
+### Main Window
 
-## Datenbank
-Die Anwendung verwendet eine SQLite-Datenbank mit folgender Tabelle:
+![Main Window](docs/main_window.png)
 
-**Transactions**
-- Id (Primärschlüssel)
-- Title
-- Amount
-- Date
-- IsIncome
+### Add Transaction
 
----
-
-## Tests & Qualität
-- Manuelle Testfälle zur Überprüfung der Kernfunktionen
-- Validierung von Benutzereingaben
-- Fehlerbehandlung bei Datenbankzugriffen
-- Saubere Trennung von Logik und UI durch MVVM
-
----
-
-## Innovation
-- Monatsauswertung mit dynamischer Auswahl von Monat und Jahr
-- Übersichtliches Dashboard mit Banner und Kennzahlen
-- Erweiterbar (z. B. Kategorien, Export, Diagramme)
-
----
-
-## Autor
-Projekt im Rahmen einer C#-Projektarbeit  
-Abgabe: **08.01**
-
+![Add Transaction](docs/add_transaction.png)
