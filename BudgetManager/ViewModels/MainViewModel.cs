@@ -1,5 +1,6 @@
 ﻿using BudgetManager.Data;
 using BudgetManager.Models;
+using BudgetManager.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
@@ -14,6 +15,9 @@ namespace BudgetManager.ViewModels
     public class MainViewModel : ViewModelBase
     {
         public ObservableCollection<Transaction> Transactions { get; } = new();
+
+        private readonly ReportService _reportService = new ReportService();
+        private readonly ValidationService _validationService = new ValidationService();
 
         // ===== Dashboard: Monat =====
         private DateTime _selectedMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
@@ -31,58 +35,92 @@ namespace BudgetManager.ViewModels
 
         public string MonthTitle => SelectedMonth.ToString("MMMM yyyy", new CultureInfo("de-DE"));
 
-
         private decimal _monthIncome;
         public decimal MonthIncome
         {
             get => _monthIncome;
-            private set { _monthIncome = value; OnPropertyChanged(); OnPropertyChanged(nameof(MonthSaldo)); }
+            private set
+            {
+                _monthIncome = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(MonthSaldo));
+            }
         }
 
         private decimal _monthExpense;
         public decimal MonthExpense
         {
             get => _monthExpense;
-            private set { _monthExpense = value; OnPropertyChanged(); OnPropertyChanged(nameof(MonthSaldo)); }
+            private set
+            {
+                _monthExpense = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(MonthSaldo));
+            }
         }
 
         public decimal MonthSaldo => MonthIncome - MonthExpense;
+
         private string _title = "";
         public string Title
         {
             get => _title;
-            set { _title = value; OnPropertyChanged(); _addCommand.RaiseCanExecuteChanged(); }
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+                _addCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private string _amountText = "0";
         public string AmountText
         {
             get => _amountText;
-            set { _amountText = value; OnPropertyChanged(); _addCommand.RaiseCanExecuteChanged(); }
+            set
+            {
+                _amountText = value;
+                OnPropertyChanged();
+                _addCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private DateTime _date = DateTime.Today;
         public DateTime Date
         {
             get => _date;
-            set { _date = value; OnPropertyChanged(); _addCommand.RaiseCanExecuteChanged(); }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+                _addCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private bool _isIncome = true;
         public bool IsIncome
         {
             get => _isIncome;
-            set { _isIncome = value; OnPropertyChanged(); OnPropertyChanged(nameof(Balance)); }
+            set
+            {
+                _isIncome = value;
+                OnPropertyChanged();
+            }
         }
 
         private Transaction? _selectedTransaction;
         public Transaction? SelectedTransaction
         {
             get => _selectedTransaction;
-            set { _selectedTransaction = value; OnPropertyChanged(); _deleteCommand.RaiseCanExecuteChanged(); }
+            set
+            {
+                _selectedTransaction = value;
+                OnPropertyChanged();
+                _deleteCommand.RaiseCanExecuteChanged();
+            }
         }
 
-        public decimal Balance => Transactions.Sum(t => t.IsIncome ? t.Amount : -t.Amount);
+        public decimal Balance => _reportService.CalculateBalance(Transactions);
 
         private readonly RelayCommand _addCommand;
         public ICommand AddCommand => _addCommand;
@@ -96,12 +134,12 @@ namespace BudgetManager.ViewModels
             _deleteCommand = new RelayCommand(async () => await DeleteAsync(), () => SelectedTransaction != null);
 
             _ = LoadAsync();
+
             Transactions.CollectionChanged += (_, __) =>
             {
                 OnPropertyChanged(nameof(Balance));
                 RefreshDashboard();
             };
-
         }
 
         private bool CanAdd()
@@ -109,24 +147,22 @@ namespace BudgetManager.ViewModels
             if (string.IsNullOrWhiteSpace(Title))
                 return false;
 
-            return decimal.TryParse(
-                AmountText,
-                NumberStyles.Number,
-                CultureInfo.CurrentCulture,
-                out var amount
-            ) && amount > 0;
+            if (!decimal.TryParse(AmountText, NumberStyles.Number, CultureInfo.CurrentCulture, out var amount))
+                return false;
 
+            return _validationService.IsValidAmount(amount)
+                && _validationService.IsValidDate(Date);
         }
+
         private void RefreshDashboard()
         {
             var monthItems = Transactions.Where(t =>
                 t.Date.Year == SelectedMonth.Year &&
                 t.Date.Month == SelectedMonth.Month);
 
-            MonthIncome = monthItems.Where(t => t.IsIncome).Sum(t => t.Amount);
-            MonthExpense = monthItems.Where(t => !t.IsIncome).Sum(t => t.Amount);
+            MonthIncome = _reportService.CalculateMonthlyIncome(monthItems, SelectedMonth.Month);
+            MonthExpense = _reportService.CalculateMonthlyExpenses(monthItems, SelectedMonth.Month);
         }
-
 
         private async Task LoadAsync()
         {
@@ -145,7 +181,6 @@ namespace BudgetManager.ViewModels
 
                 OnPropertyChanged(nameof(Balance));
                 RefreshDashboard();
-
             }
             catch (Exception ex)
             {
@@ -155,15 +190,11 @@ namespace BudgetManager.ViewModels
 
         private async Task AddAsync()
         {
-            // Если хочешь — потом уберём MessageBox
-            //MessageBox.Show("AddAsync called");
-
-            if (!decimal.TryParse(
-                    AmountText,
-                    NumberStyles.Number,
-                    CultureInfo.CurrentCulture,
-                    out var amount) || amount <= 0)
+            if (!CanAdd())
                 return;
+
+            // CanAdd() already validated parsing and > 0
+            decimal.TryParse(AmountText, NumberStyles.Number, CultureInfo.CurrentCulture, out var amount);
 
             var tx = new Transaction
             {
@@ -194,14 +225,13 @@ namespace BudgetManager.ViewModels
 
             OnPropertyChanged(nameof(Balance));
             RefreshDashboard();
-
-
             _addCommand.RaiseCanExecuteChanged();
         }
 
         private async Task DeleteAsync()
         {
-            if (SelectedTransaction == null) return;
+            if (SelectedTransaction == null)
+                return;
 
             var toDelete = SelectedTransaction;
 
@@ -222,8 +252,6 @@ namespace BudgetManager.ViewModels
 
             OnPropertyChanged(nameof(Balance));
             RefreshDashboard();
-
-
             _deleteCommand.RaiseCanExecuteChanged();
         }
     }
