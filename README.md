@@ -19,6 +19,14 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 
 ---
 
+## Architecture
+
+The application follows the MVVM (Model-View-ViewModel) architecture.
+
+- **Model** – data structures and database entities  
+- **View** – WPF user interface  
+- **ViewModel** – application logic and data binding
+
 ## Tech Stack
 
 - C#
