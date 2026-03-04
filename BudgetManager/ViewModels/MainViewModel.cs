@@ -160,8 +160,8 @@ namespace BudgetManager.ViewModels
                 t.Date.Year == SelectedMonth.Year &&
                 t.Date.Month == SelectedMonth.Month);
 
-            MonthIncome = _reportService.CalculateMonthlyIncome(monthItems, SelectedMonth.Month);
-            MonthExpense = _reportService.CalculateMonthlyExpenses(monthItems, SelectedMonth.Month);
+            MonthIncome = _reportService.CalculateMonthlyIncome(monthItems, SelectedMonth);
+            MonthExpense = _reportService.CalculateMonthlyExpenses(monthItems, SelectedMonth);
         }
 
         private async Task LoadAsync()
