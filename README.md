@@ -71,13 +71,17 @@ The database will be created automatically.
 ## Screenshots
 
 ### Dashboard
-![Dashboard](docs/01_dashboard.png)
+
+![Dashboard](docs/screenshots/dashboard.png)
 
 ### Transactions
-![Transactions](docs/02_Transaktion.png)
+
+![Transactions](docs/screenshots/transactions.png)
 
 ### Add Transaction
-![Add Transaction](docs/02_add_transaction.png)
+
+![Add Transaction](docs/screenshots/add_transaction.png)
 
 ### Monthly Overview
-![Monthly Overview](docs/04_month_overview.png)
+
+![Monthly Overview](docs/screenshots/month_overview.png)
