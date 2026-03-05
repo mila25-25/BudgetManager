@@ -120,6 +120,28 @@ Unit tests validate the service layer.
 
 ---
 
+## Project Structure
+
+BudgetManager/
+│
+├─ BudgetManager/          # Main WPF application
+│  ├─ Models/              # Data models
+│  ├─ Services/            # Business logic
+│  ├─ ViewModels/          # MVVM ViewModels
+│  ├─ Views/               # WPF UI
+│  ├─ Data/                # Database context
+│  └─ Migrations/          # Entity Framework migrations
+│
+├─ BudgetManager.Tests/    # Unit tests
+│
+├─ docs/
+│  ├─ screenshots/         # UI screenshots
+│  └─ uml/                 # UML diagrams
+│
+└─ README.md
+
+---
+
 ## UML Diagrams
 
 ### Use Case Diagram
@@ -137,3 +159,19 @@ Unit tests validate the service layer.
 ### Activity Diagram – Add Transaction
 
 ![Activity Diagram](docs/uml/activity_add.png)
+
+---
+
+## Future Improvements
+
+Possible extensions of the application include:
+
+- Transaction categories
+- Graphical financial statistics
+- Export functionality (CSV / PDF)
+- Multi-user support
+- Cloud synchronization
+- Mobile or web version
+
+The current architecture (MVVM + Service Layer) allows these features
+to be implemented without major structural changes.
