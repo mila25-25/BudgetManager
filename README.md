@@ -120,25 +120,23 @@ Unit tests validate the service layer.
 
 ---
 
-## Project Structure
-
 BudgetManager/
 │
-├─ BudgetManager/          # Main WPF application
-│  ├─ Models/              # Data models
-│  ├─ Services/            # Business logic
-│  ├─ ViewModels/          # MVVM ViewModels
-│  ├─ Views/               # WPF UI
-│  ├─ Data/                # Database context
-│  └─ Migrations/          # Entity Framework migrations
+├── BudgetManager/          # Main WPF application
+│   ├── Models/             # Data models
+│   ├── Services/           # Business logic
+│   ├── ViewModels/         # MVVM ViewModels
+│   ├── Views/              # WPF UI
+│   ├── Data/               # Database context
+│   └── Migrations/         # Entity Framework migrations
 │
-├─ BudgetManager.Tests/    # Unit tests
+├── BudgetManager.Tests/    # Unit tests
 │
-├─ docs/
-│  ├─ screenshots/         # UI screenshots
-│  └─ uml/                 # UML diagrams
+├── docs/
+│   ├── screenshots/        # UI screenshots
+│   └── uml/                # UML diagrams
 │
-└─ README.md
+└── README.md
 
 ---
 
