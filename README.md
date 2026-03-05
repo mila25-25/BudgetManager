@@ -1,9 +1,11 @@
 # BudgetManager
 
-WPF desktop application for managing personal income and expenses.
-Built with MVVM architecture and Entity Framework Core.
+[![.NET Build & Tests](https://github.com/mila25-25/BudgetManager/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/mila25-25/BudgetManager/actions)
 
-![Build](https://github.com/mila25-25/BudgetManager/actions/workflows/dotnet-desktop.yml/badge.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/mila25-25/BudgetManager)
+![GitHub repo size](https://img.shields.io/github/repo-size/mila25-25/BudgetManager)
+
+WPF desktop application for managing personal income and expenses.
 
 ---
 
