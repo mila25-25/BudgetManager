@@ -1,1 +1,21 @@
-Use-Case Diagramm
+@startuml
+left to right direction
+
+actor "Benutzer" as User
+
+rectangle "Budget Manager" {
+  usecase "Transaktion hinzufügen" as UC_Add
+  usecase "Transaktion löschen" as UC_Del
+  usecase "Transaktionen anzeigen" as UC_List
+  usecase "Monat/Jahr auswählen" as UC_Select
+  usecase "Monatsauswertung anzeigen\n(Einnahmen & Ausgaben)" as UC_Report
+}
+
+User --> UC_Add
+User --> UC_Del
+User --> UC_List
+User --> UC_Select
+User --> UC_Report
+
+UC_Report ..> UC_Select : <<include>>
+@enduml
