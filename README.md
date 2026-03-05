@@ -60,14 +60,6 @@ The database will be created automatically.
 ---
 
 
-### Main Window
-
-![Main Window](docs/main_window.png)
-
-### Add Transaction
-
-![Add Transaction](docs/add_transaction.png)
-
 ## Screenshots
 
 ### Dashboard
