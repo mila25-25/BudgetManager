@@ -1,1 +1,14 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
 
+entity "Transactions" as T {
+  * Id : int <<PK>>
+  --
+  Title : string
+  Amount : decimal
+  Date : datetime
+  IsIncome : bool
+}
+
+@enduml
