@@ -1,12 +1,16 @@
-# Budget Manager (WPF, MVVM)
+# BudgetManager
+
+WPF desktop application for managing personal income and expenses.
+Built with MVVM architecture and Entity Framework Core.
+
 ![Build](https://github.com/mila25-25/BudgetManager/actions/workflows/dotnet-desktop.yml/badge.svg)
 
 ## Overview
-Budget Manager is a desktop application for managing personal finances.
+
+BudgetManager is a desktop application for managing personal finances.
 It allows users to track income and expenses, calculate balances and analyze transactions.
 
-The application is built with WPF using the MVVM architecture and uses Entity Framework Core with SQLite for data storage.
-
+The application is built with **WPF** using the **MVVM architecture** and uses **Entity Framework Core with SQLite** for data persistence.
 ---
 
 ## Features
@@ -25,8 +29,9 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 - C#
 - .NET
 - WPF
-- Entity Framework
 - MVVM
+- Entity Framework Core
+- SQLite
 - xUnit
 - GitHub Actions (CI)
 - PlantUML
@@ -35,9 +40,9 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 
 ## Database
 
-The application uses a SQLite database.
+The application uses a local **SQLite database**.
 
-The database is created automatically when the application starts using Entity Framework Core migrations.
+The database is created automatically when the application starts using **Entity Framework Core**.
 
 The database file is stored locally and is not included in the repository.
 
@@ -62,7 +67,6 @@ The database will be created automatically.
 
 ---
 
-
 ## Screenshots
 
 ### Dashboard
@@ -83,7 +87,7 @@ The database will be created automatically.
 
 ## Architecture
 
-BudgetManager uses a simple layered architecture:
+BudgetManager uses a simple **layered architecture**::
 
 UI (Views)
 ↓
