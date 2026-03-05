@@ -106,7 +106,10 @@ The database will be created automatically.
 
 ## Architecture
 
-BudgetManager uses a simple **layered architecture**::
+## Architecture
+BudgetManager uses a simple **layered architecture**:
+```text
+BudgetManager/
 
 UI (Views)
 ↓
@@ -115,6 +118,7 @@ ViewModels
 Services (Business Logic)
 ↓
 Models (Data)
+```
 
 Unit tests validate the service layer. 
 
