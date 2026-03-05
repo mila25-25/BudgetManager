@@ -1,1 +1,16 @@
+@startuml
+title Activity Diagram - Add Transaction
 
+start
+:Benutzer gibt Daten ein;
+:Click auf "Hinzufügen";
+if (Eingabe gültig?) then (ja)
+  :In DB speichern;
+  :Liste aktualisieren;
+  :Balance/Report aktualisieren;
+else (nein)
+  :Fehler anzeigen;
+endif
+stop
+
+@enduml
