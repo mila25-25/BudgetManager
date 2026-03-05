@@ -20,14 +20,16 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 
 ---
 
-## Tech Stack
+## Technologies
 
 - C#
 - .NET
 - WPF
+- Entity Framework
 - MVVM
-- Entity Framework Core
-- SQLite
+- xUnit
+- GitHub Actions (CI)
+- PlantUML
 
 ---
 
