@@ -176,3 +176,7 @@ Possible extensions of the application include:
 
 The current architecture (MVVM + Service Layer) allows these features
 to be implemented without major structural changes.
+
+## Author
+
+Created by **Ludmila Hoshko**
