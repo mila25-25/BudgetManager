@@ -88,11 +88,17 @@ The database will be created automatically.
 
 ## Architecture
 
-The application follows the **MVVM (Model-View-ViewModel)** architecture.
+BudgetManager uses a simple layered architecture:
 
-- **Model** – data entities and database structure  
-- **View** – WPF user interface  
-- **ViewModel** – application logic and data binding  
+UI (Views)
+↓
+ViewModels
+↓
+Services (Business Logic)
+↓
+Models (Data)
+
+Unit tests validate the service layer. 
 
 ---
 
