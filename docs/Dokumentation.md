@@ -36,18 +36,15 @@ sowie deren Beziehungen untereinander.
 Zentrale Klassen sind:
 
 - **Transaction (Model)**: Repräsentiert eine einzelne Einnahme oder Ausgabe.
-- **MainViewModel (ViewModel)**: Enthält die Geschäftslogik, berechnete Werte (z. B. Balance und Monatsauswertung)
-  sowie Commands zur Verarbeitung von Benutzeraktionen.
-- **ReportService (Service)**: Stellt Funktionen zur Berechnung der Gesamtbalance sowie der monatlichen
-  Einnahmen und Ausgaben bereit.
-- **BudgetDbContext**: Stellt die Verbindung zur SQLite-Datenbank her und verwaltet die Persistenz
-  über Entity Framework Core.
+- **MainViewModel (ViewModel)**: Enthält die Geschäftslogik sowie berechnete Werte
+  wie Balance und Monatsauswertung.
+- **ReportService (Service)**: Stellt Funktionen zur Berechnung der Gesamtbalance
+  sowie der monatlichen Einnahmen und Ausgaben bereit.
+- **BudgetDbContext**: Stellt die Verbindung zur SQLite-Datenbank her
+  und verwaltet die Persistenz über Entity Framework Core.
 
-Zusätzlich existiert ein Testprojekt (**ReportServiceTests**), das die wichtigsten
-Berechnungsfunktionen automatisiert überprüft.
-
-Das Diagramm verdeutlicht die Umsetzung der MVVM-Architektur und die klare Trennung zwischen
-Datenmodell, Anwendungslogik und Datenhaltung.
+Zusätzlich existiert ein Testprojekt (**ReportServiceTests**),
+das die wichtigsten Berechnungsfunktionen automatisiert überprüft.
 
 ![Klassendiagramm](uml/classdiagram.png)
 
@@ -57,17 +54,16 @@ Datenmodell, Anwendungslogik und Datenhaltung.
 
 Das Aktivitätsdiagramm beschreibt den Ablauf beim Hinzufügen einer neuen Transaktion.
 
-Der Prozess beginnt mit der Eingabe der Daten durch den Benutzer und endet mit der Aktualisierung
-der Benutzeroberfläche. Wichtige Schritte sind:
+Der Prozess beginnt mit der Eingabe der Daten durch den Benutzer und endet mit der
+Aktualisierung der Benutzeroberfläche.
+
+Wichtige Schritte sind:
 
 - Eingabe der Transaktionsdaten
 - Validierung der Eingaben
 - Speicherung der Daten in der Datenbank
 - Aktualisierung der Transaktionsliste
-- Neuberechnung der aktuellen Balance sowie der Monatsauswertung
-
-Dieses Diagramm stellt den Kontrollfluss dar und erleichtert das Verständnis der im ViewModel
-implementierten Logik.
+- Neuberechnung der Balance und Monatsauswertung
 
 ![Aktivitätsdiagramm – Transaktion hinzufügen](uml/activity_add.png)
 
@@ -75,7 +71,7 @@ implementierten Logik.
 
 ### Datenbankmodell (ER-Modell)
 
-Das Datenbankmodell wird durch ein Entity-Relationship-Diagramm (ER-Modell) beschrieben.
+Das Datenbankmodell wird durch ein Entity-Relationship-Diagramm beschrieben.
 Die Anwendung verwendet eine SQLite-Datenbank mit einer zentralen Tabelle **Transactions**.
 
 Die Tabelle enthält folgende Attribute:
@@ -86,21 +82,36 @@ Die Tabelle enthält folgende Attribute:
 - **Date** – Datum der Transaktion  
 - **IsIncome** – Kennzeichnung für Einnahme oder Ausgabe  
 
-Das Datenbankmodell ist bewusst einfach gehalten und ermöglicht eine effiziente Speicherung
-sowie Auswertung der Finanzdaten.
-
-Durch die modulare Architektur der Anwendung kann das Datenbankschema später problemlos erweitert
-werden, beispielsweise um Kategorien, Benutzerkonten oder zusätzliche Auswertungsfunktionen.
-
 ![ER-Modell](uml/er_model.png)
+
+---
+
+## Test und Qualitätssicherung
+
+Zur Sicherstellung der Funktionsfähigkeit und Stabilität der Anwendung wurden
+manuelle Funktionstests sowie automatisierte Unit Tests durchgeführt.
+
+Die manuellen Testfälle befinden sich im Repository im Ordner:
+
+`docs/tests/`
+
+Zusätzlich wurden Unit Tests mit **xUnit** implementiert,
+um zentrale Funktionen der Business-Logik zu überprüfen.
+
+Diese Tests befinden sich im Projekt:
+
+`BudgetManager.Tests`
+
+Die automatisierten Tests werden über **GitHub Actions (CI)** bei jedem Push
+in das Repository automatisch ausgeführt.
 
 ---
 
 ### Zusammenfassung
 
-Die Diagramme unterstützen die strukturierte Entwicklung der Anwendung und stellen sicher,
-dass Anforderungen, Architektur und Implementierung konsistent aufeinander abgestimmt sind.
+Die Diagramme unterstützen die strukturierte Entwicklung der Anwendung
+und stellen sicher, dass Anforderungen, Architektur und Implementierung
+konsistent aufeinander abgestimmt sind.
 
-Dank der verwendeten Architektur (MVVM, Service-Schicht und Entity Framework Core) ist die Anwendung
-gut wartbar und kann problemlos weiterentwickelt werden. Neue Funktionen können ohne grundlegende
-Änderungen an der bestehenden Struktur integriert werden.
+Dank der verwendeten Architektur (MVVM, Service-Schicht und Entity Framework Core)
+ist die Anwendung gut wartbar und kann problemlos erweitert werden.
