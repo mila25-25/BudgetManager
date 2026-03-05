@@ -38,18 +38,32 @@ Die automatisierten Tests werden bei jedem Push automatisch durch die CI-Pipelin
 
 ### Manuelle Testfälle
 
-Die manuellen Funktionstests sind im Repository dokumentiert und befinden sich im Ordner `tests/`.
+Zur Überprüfung der Benutzerfunktionen wurden strukturierte **manuelle Testfälle** definiert.  
+Diese Testfälle simulieren typische Benutzeraktionen innerhalb der Anwendung und prüfen sowohl die korrekte Bedienung der Oberfläche als auch die Verarbeitung der Daten.
 
-Diese Testfälle decken typische Benutzeraktionen ab, z. B.:
+Die Testfälle sind im Repository im Ordner `tests/` dokumentiert und als Tabelle strukturiert.
 
-- Starten der Anwendung
-- Laden vorhandener Transaktionen
-- Hinzufügen von Einnahmen und Ausgaben
-- Validierung fehlerhafter Eingaben
-- Löschen von Transaktionen
+Beispiele der getesteten Szenarien:
+
+- Start der Anwendung und Anzeige des Hauptfensters
+- Laden vorhandener Transaktionen aus der Datenbank
+- Hinzufügen neuer Einnahmen und Ausgaben
+- Validierung ungültiger Eingaben (z. B. Text statt Zahl im Betrag)
+- Unterstützung verschiedener Zahlenformate (Komma oder Punkt)
+- Löschen vorhandener Transaktionen
+- Verhalten bei Löschversuchen ohne Auswahl
 - Persistenz der Daten nach Neustart der Anwendung
+- Korrekte Anzeige der Monatsauswertung
 
-Die Testfälle sind in strukturierter Form als Tabellen dokumentiert.
+Die einzelnen Testfälle sind mit eindeutigen IDs (z. B. **T01–T10**) gekennzeichnet und enthalten folgende Informationen:
+
+- Test-ID
+- Beschreibung des Testfalls
+- Vorbedingungen
+- Testschritte
+- Erwartetes Ergebnis
+
+Diese strukturierte Darstellung ermöglicht eine nachvollziehbare und reproduzierbare Überprüfung der Anwendungsfunktionen.
 
 ---
 
