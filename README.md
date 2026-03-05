@@ -5,12 +5,28 @@ Built with MVVM architecture and Entity Framework Core.
 
 ![Build](https://github.com/mila25-25/BudgetManager/actions/workflows/dotnet-desktop.yml/badge.svg)
 
+---
+
 ## Overview
 
 BudgetManager is a desktop application for managing personal finances.
 It allows users to track income and expenses, calculate balances and analyze transactions.
 
 The application is built with **WPF** using the **MVVM architecture** and uses **Entity Framework Core with SQLite** for data persistence.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Database](#database)
+- [How to Run](#how-to-run)
+- [Screenshots](#screenshots)
+- [Architecture](#architecture)
+- [UML Diagrams](#uml-diagrams)
+
 ---
 
 ## Features
@@ -54,7 +70,6 @@ The database file is stored locally and is not included in the repository.
 
 git clone https://github.com/mila25-25/BudgetManager
 
-
 2. Open the solution in Visual Studio
 
 BudgetManager.sln
@@ -84,6 +99,8 @@ The database will be created automatically.
 ### Monthly Overview
 
 ![Monthly Overview](docs/screenshots/month_overview.png)
+
+---
 
 ## Architecture
 
