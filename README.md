@@ -1,4 +1,5 @@
 # Budget Manager (WPF, MVVM)
+![Build](https://github.com/mila25-25/BudgetManager/actions/workflows/dotnet-desktop.yml/badge.svg)
 
 ## Overview
 Budget Manager is a desktop application for managing personal finances.
