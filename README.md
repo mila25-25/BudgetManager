@@ -120,6 +120,8 @@ Unit tests validate the service layer.
 
 ---
 
+## Project Structure
+```text
 BudgetManager/
 │
 ├── BudgetManager/          # Main WPF application
@@ -137,6 +139,7 @@ BudgetManager/
 │   └── uml/                # UML diagrams
 │
 └── README.md
+```
 
 ---
 
