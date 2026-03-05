@@ -1,42 +1,54 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class Transaction {
-  Id : int
-  Title : string
-  Amount : decimal
-  Date : DateTime
-  IsIncome : bool
+package "BudgetManager.Models" {
+  class Transaction {
+    Id : int
+    Title : string
+    Amount : decimal
+    Date : DateTime
+    IsIncome : bool
+  }
 }
 
-class ReportService {
-  CalculateBalance()
-  CalculateMonthlyIncome()
-  CalculateMonthlyExpenses()
+package "BudgetManager.Data" {
+  class BudgetDbContext {
+    Transactions : DbSet<Transaction>
+  }
 }
 
-class MainViewModel {
-  Transactions
-  SelectedTransaction
-  Balance
-  AddCommand
-  DeleteSelectedCommand
+package "BudgetManager.Services" {
+  class ReportService {
+    +CalculateBalance(transactions) : decimal
+    +CalculateMonthlyIncome(transactions, month) : decimal
+    +CalculateMonthlyExpenses(transactions, month) : decimal
+  }
 }
 
-class BudgetDbContext {
-  Transactions
+package "BudgetManager.ViewModels" {
+  class MainViewModel {
+    Transactions
+    SelectedTransaction
+    Balance
+    AddCommand
+    DeleteSelectedCommand
+  }
 }
 
-class ReportServiceTests {
-  Balance_ShouldBeCorrect()
-  MonthlyIncome_ShouldWork()
-  MonthlyExpenses_ShouldWork()
+package "BudgetManager.Tests" {
+  class ReportServiceTests {
+    Balance_ShouldBeCorrect_AfterAddingIncomeAndExpense()
+    Balance_ShouldBeZero_WhenNoTransactions()
+    MonthlyReport_ShouldSumIncomeCorrectly()
+    MonthlyReport_ShouldSumExpensesCorrectly()
+    MonthlyReport_ShouldIgnoreOtherMonths()
+    MonthlyExpenses_ShouldIgnoreOtherMonths()
+  }
 }
 
-MainViewModel --> ReportService
-MainViewModel --> BudgetDbContext
-BudgetDbContext --> Transaction
-ReportService --> Transaction
-ReportServiceTests --> ReportService
-
+MainViewModel --> BudgetDbContext : uses
+MainViewModel --> ReportService : uses
+BudgetDbContext --> Transaction : stores
+ReportService ..> Transaction : reads
+ReportServiceTests ..> ReportService : tests
 @enduml
