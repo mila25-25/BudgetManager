@@ -11,12 +11,12 @@ The application is built with WPF using the MVVM architecture and uses Entity Fr
 
 ## Features
 
-- Add income and expense transactions
-- View list of transactions
+- Add transactions (income / expense)
+- Delete transactions
+- View transaction list
+- Monthly report (income & expenses)
 - Automatic balance calculation
-- Categorize transactions
-- Simple and intuitive WPF user interface
-- Data persistence using SQLite and Entity Framework Core
+- Unit tests for service layer
 
 ---
 
