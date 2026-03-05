@@ -1,1 +1,42 @@
+@startuml
+skinparam classAttributeIconSize 0
 
+class Transaction {
+  Id : int
+  Title : string
+  Amount : decimal
+  Date : DateTime
+  IsIncome : bool
+}
+
+class ReportService {
+  CalculateBalance()
+  CalculateMonthlyIncome()
+  CalculateMonthlyExpenses()
+}
+
+class MainViewModel {
+  Transactions
+  SelectedTransaction
+  Balance
+  AddCommand
+  DeleteSelectedCommand
+}
+
+class BudgetDbContext {
+  Transactions
+}
+
+class ReportServiceTests {
+  Balance_ShouldBeCorrect()
+  MonthlyIncome_ShouldWork()
+  MonthlyExpenses_ShouldWork()
+}
+
+MainViewModel --> ReportService
+MainViewModel --> BudgetDbContext
+BudgetDbContext --> Transaction
+ReportService --> Transaction
+ReportServiceTests --> ReportService
+
+@enduml
